@@ -31,17 +31,21 @@ if st.button("Prever"):
     pred = pipeline.predict(entrada)[0]
     proba = pipeline.predict_proba(entrada)[0][1]
 
+    st.write("\n============== REGRESSÃO LOGÍSTICA ==============")
+
     if pred == 1:
         st.write("Resultado: diabetico")
     else:
         st.write("Resultado: nao diabetico")
 
-    st.write(f"Probabilidade de diabetes (REGRESSÃO LOGÍSTICA): {(round(proba, 3) * 100):.2f}" )
+    st.write(f"Probabilidade de diabetes: {(round(proba, 3) * 100):.2f}" )
 
     #-----------------------------------------
 
     pred_arvore = pipeline_arvore.predict(entrada)[0]
-    proba_arvore = pipeline_arvore.predict_proba(entrada)
+    proba_arvore = pipeline_arvore.predict_proba(entrada)[0][1]
+
+    st.write("\n============== ÁRVORE DE DECISÃO ==============")
 
     if pred_arvore == 1:
         st.write("Resultado: diabetico")
@@ -49,4 +53,4 @@ if st.button("Prever"):
         st.write("Resultado: nao diabetico")
 
     # st.write(f"Probabilidade de diabetes (ÁRVORE DE DECISÃO): {(round(proba_arvore, 3) * 100):.2f}")
-    st.write(f"Probabilidade de diabetes (ÁRVORE DE DECISÃO): {proba_arvore}")
+    st.write(f"Probabilidade de diabetes: {(round(proba_arvore, 3) * 100):.2f}%")
